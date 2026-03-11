@@ -50,11 +50,18 @@ Output example:
 file1.txt : Line 1 -> hello world
 file2.txt : Line 2 -> hello from github
 file3.txt : Line 3 -> hello again
+
+```
 ## Demo
 
+Example output:
+
+### Running Program
+
 ![Program Demo](assets/working1.jpg)
+
 ![Program Demo](assets/working2.jpg)
-```
+
 
 ## Concepts Used
 
