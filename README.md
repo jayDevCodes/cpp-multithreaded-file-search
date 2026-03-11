@@ -58,10 +58,8 @@ Example output:
 
 ### Running Program
 
-![Program Demo](assets/working1.jpg)
-
-![Program Demo](assets/working2.jpg)
-
+<img src="assets/working1.jpg" width="500" height="300">
+<img src="assets/working2.jpg" width="500" height="300">
 
 ## Concepts Used
 
