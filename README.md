@@ -58,7 +58,7 @@ Example output:
 
 ### Running Program
 
-<img src="assets/working1.jpg" width="300" height="300">
+<img src="assets/working1.jpg" width="300" height="500">
 <img src="assets/working2.jpg" width="400" height="300">
 
 ## Concepts Used
