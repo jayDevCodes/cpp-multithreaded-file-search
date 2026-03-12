@@ -1,8 +1,9 @@
 #include "search.h"
 #include <iostream>
 #include <fstream>
-#include<string>
+#include <string>
 #include <mutex>
+#include <regex>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ mutex coutMutex;
 const string BOLD_YELLOW = "\033[1;33m";
 const string RESET = "\033[0m";
 
-void searchInFile(const string& filename, const string& word) {
+void searchInFile(const string& filename, const regex& pattern) {
     ifstream file(filename);
     if (!file.is_open()) return;
 
@@ -19,15 +20,19 @@ void searchInFile(const string& filename, const string& word) {
     int lineNumber = 1;
 
     while (getline(file, line)) {
-        size_t pos = line.find(word);
-        if (pos != string::npos) {
+        sregex_iterator iter(line.begin(), line.end(), pattern);
+        sregex_iterator end;
+
+        if(iter != end) {
             string highlightedLine = "";
             size_t start = 0;
 
-            while ((pos = line.find(word, start)) != string::npos) {
-                highlightedLine += line.substr(start, pos - start); 
-                highlightedLine += BOLD_YELLOW + word + RESET;    
-                start = pos + word.length();                       
+            while (iter != end) {
+                smatch match = *iter;
+                highlightedLine += line.substr(start, match.position() - start); 
+                highlightedLine += BOLD_YELLOW + match.str() + RESET;    
+                start = match.position() + match.length();                       
+                ++iter;
             }
             highlightedLine += line.substr(start); 
 
