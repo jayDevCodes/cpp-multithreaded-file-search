@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <algorithm>
 #include <execution>
+#include <regex>
 #include "search.h"
 using namespace std;
 
@@ -18,13 +19,21 @@ int main() {
     };
 
     string word;
-    cout << "Enter word to search: ";
+    cout << "Enter word/pattern to search: ";
     cin >> word;
+
+    regex pattern;
+    try{
+        pattern = regex(word);
+    } catch (const regex_error& e) {
+        cerr << "Invalid regex pattern: " << e.what() << endl;
+        return 1;
+    }
 
     vector<thread> threads;
 
     for (const auto& file : files) {
-        threads.push_back(thread(searchInFile, file, word));
+        threads.push_back(thread(searchInFile, file, ref(pattern)));
     }
 
     for (auto& t : threads) {
