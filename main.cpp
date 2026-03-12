@@ -17,12 +17,6 @@ int main() {
         files.push_back(entry.path());
     };
 
-//    vector<string> files = {
-//        ("file1.txt"),
-//        "file2.txt",
-//        "file3.txt"
-//    };
-
     string word;
     cout << "Enter word to search: ";
     cin >> word;
