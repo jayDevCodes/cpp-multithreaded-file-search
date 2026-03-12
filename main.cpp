@@ -1,17 +1,27 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <filesystem>
+#include <algorithm>
+#include <execution>
 #include "search.h"
-
 using namespace std;
 
 int main() {
+    string path;
+    cout <<"Enter file Path: ";
+    cin >> path;
 
-    vector<string> files = {
-        "file1.txt",
-        "file2.txt",
-        "file3.txt"
+    vector<string> files;
+    for (const auto& entry : filesystem::directory_iterator(path)) {
+        files.push_back(entry.path());
     };
+
+//    vector<string> files = {
+//        ("file1.txt"),
+//        "file2.txt",
+//        "file3.txt"
+//    };
 
     string word;
     cout << "Enter word to search: ";
